@@ -16,6 +16,23 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+def check(board, turn):
+    return ((board[0][0] == turn and board[0][1] == turn and board[0][2] == turn) or
+    (board[1][0] == turn and board[1][1] == turn and board[1][2] == turn) or
+    (board[2][0] == turn and board[2][1] == turn and board[2][2] == turn) or
+    (board[0][0] == turn and board[1][0] == turn and board[2][0] == turn) or
+    (board[0][1] == turn and board[1][1] == turn and board[2][1] == turn) or
+    (board[0][2] == turn and board[1][2] == turn and board[2][2] == turn) or
+    (board[0][0] == turn and board[1][1] == turn and board[2][2] == turn) or
+    (board[0][2] == turn and board[1][1] == turn and board[2][0] == turn))
+
+def is_end(board):
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == None:
+                return (False)
+    return (True)
+
 @app.route("/")
 def index():
 
@@ -28,11 +45,16 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
     session["board"][row][col] = session["turn"]
-    if session["turn"] == "X":
-        session["turn"] = "O"
+    if check(session["board"], session["turn"]):
+        return render_template("result.html", game = session["board"], winner = session["turn"])
+    elif (not (check(session["board"], session["turn"])) and is_end(session["board"])):
+        return render_template("result.html", game = session["board"], winner = "Tie")
     else:
-        session["turn"] = "X"
-    return redirect(url_for("index"))
+        if session["turn"] == "X":
+            session["turn"] = "O"
+        else:
+            session["turn"] = "X"
+        return redirect(url_for("index"))
 
 @app.route("/reset")
 def reset():

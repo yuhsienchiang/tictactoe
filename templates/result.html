@@ -30,13 +30,18 @@
             {% if game[i][j] %}
               {{ game[i][j] }}
             {% else %}
-              <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
+              <a href="#">Play {{ turn }} here</a>
             {% endif %}
           </td>
           {% endfor %}
         </tr>
         {% endfor %}
       </table>
+      {% if winner == "Tie" %}
+        <h4>Tie</h4>
+      {% else %}
+        <h4>{{ winner }} win !</h4>
+      {% endif %}
 
       <a href="{{ url_for('reset') }}">Reset Game Board</a>
 
