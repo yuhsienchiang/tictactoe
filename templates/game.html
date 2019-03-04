@@ -1,44 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Tic Tac Toe</title>
-    </head>
+{% extends "layout.html" %}
+{% block body %}
 
-    <style>
-    table {
-      border-collapse: collapse;
-    }
-    td {
-      border: 3px solid black;
-      width: 150px;
-      height: 150px;
-      font-size: 20px;
-      text-align: center;
-    }
-    td > a {
-      font-size: 10px;
-    }
+<table>
+  {% for i in range(3) %}
+  <tr>
+    {% for j in range(3) %}
+    <td>
+      {% if game[i][j] %}
+      {{ game[i][j] }}
+      {% else %}
+      <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
+      {% endif %}
+    </td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
 
-    </style>
-
-    <body>
-      <table>
-        {% for i in range(3) %}
-        <tr>
-          {% for j in range(3) %}
-          <td>
-            {% if game[i][j] %}
-              {{ game[i][j] }}
-            {% else %}
-              <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
-            {% endif %}
-          </td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </table>
-
-      <a href="{{ url_for('reset') }}">Reset Game Board</a>
-
-    </body>
-</html>
+{% endblock %}

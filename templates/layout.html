@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+</head>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 3px solid black;
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  a {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  td > a {
+    text-align: center;
+    font-size: 10px;
+  }
+
+</style>
+
+<body>
+  <h1>Tic Tac Toe</h1>
+  {% block body %}
+  {% endblock %}
+  <a href="{{ url_for('reset') }}">Reset Game Board</a>
+
+</body>
+</html>
