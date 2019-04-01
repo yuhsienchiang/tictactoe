@@ -43,7 +43,9 @@ def play(row, col):
 
 @app.route("/reset")
 def reset():
-    del session["board"]
+    session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
+    session["turn"] = "X"
+    session["winner"] = None
     return redirect(url_for("index"))
 
 
