@@ -7,14 +7,21 @@
     {% for j in range(3) %}
     <td>
       {% if game[i][j] %}
-      {{ game[i][j] }}
+        {{ game[i][j] }}
       {% else %}
-      <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
+        {% if winner == None %}
+          <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
+        {% endif %}
       {% endif %}
     </td>
     {% endfor %}
   </tr>
   {% endfor %}
 </table>
+
+{% if winner != None %}
+  <h3>Game Over!</h3>
+  <h3>{{ winner }} Win !</h3>
+{% endif %}
 
 {% endblock %}
