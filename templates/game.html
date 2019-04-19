@@ -21,7 +21,11 @@
 
 {% if winner != None %}
   <h3>Game Over!</h3>
-  <h3>{{ winner }} Win !</h3>
+  {% if winner == "Tie" %}
+    <h3>It's a Tie!</h3>
+  {% else %}
+    <h3>{{ winner }} Win !</h3>
+  {% endif %}
 {% endif %}
 
 {% endblock %}

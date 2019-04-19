@@ -31,8 +31,11 @@ def index():
 def play(row, col):
     session["board"][row][col] = session["turn"]
 
-    if (isOver(session["board"])):
-        session["winner"] = session["turn"]
+    if (isOver(session["board"]) or isTie(session["board"])):
+        if (isTie(session["board"])):
+            session["winner"] = "Tie"
+        else:
+            session["winner"] = session["turn"]
 
     if (session["turn"] == "X"):
         session["turn"] = "O"
@@ -68,3 +71,9 @@ def isOver(board):
         return True
 
     return False
+
+def isTie(board):
+    if (None not in board[0] and None not in board[1] and None not in board[2]):
+        return True
+    else:
+        return False

@@ -11,15 +11,12 @@ td {
   width: 150px;
   height: 150px;
   font-size: 20px;
-  text-align: center;
 }
 
 a {
-  text-align: center;
   font-size: 12px;
 }
 
 td > a {
-  text-align: center;
   font-size: 10px;
 }
