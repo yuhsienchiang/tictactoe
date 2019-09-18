@@ -3,7 +3,7 @@
     {% if winner == "X" or winner == "Tie" %}
     <img src="{{ url_for('static', filename='crown.png') }}" class="crown">
     {% endif %}
-    <div class="left {% if turn == 'X' %} turn {% endif%}">
+    <div class="left {% if turn == 'X' and winner == None %} turn {% endif%}">
         <a href="#" class="cross"></a>
     </div>
 {% endblock %}
@@ -34,7 +34,7 @@
     {% if winner == "O" or winner == "Tie" %}
     <img src="{{ url_for('static', filename='crown.png') }}" class="crown">
     {% endif %}
-    <div class="right {% if turn == 'O' %} turn {% endif %}">
+    <div class="right {% if turn == 'O' and winner == None %} turn {% endif %}">
         <a href="#" class="circle"></a>
     </div>
 

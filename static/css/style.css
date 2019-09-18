@@ -66,13 +66,34 @@ header {
 }
 
 .left.turn .cross::before {
-    transform: translate(-7px,-7px) rotate(45deg);;
+    transform: translate(-7px,-7px) rotate(45deg);
     box-shadow: 7px 7px 9px #555;
+    animation-name: cross-before-animate;
+    animation-duration: 0.5s;
+    will-change: transform, box-shadow;
 }
 
 .left.turn .cross::after {
-    transform: translate(-7px,-7px) rotate(-45deg);;
+    transform: translate(-7px,-7px) rotate(-45deg);
     box-shadow: 2px 7px 9px #555;
+    animation-name: cross-after-animate;
+    animation-duration: 0.5s;
+    will-change: transform, box-shadow;
+}
+
+
+@keyframes cross-after-animate {
+    from {
+        transform: translate(0, 0) rotate(-45deg);
+        box-shadow: none;
+    }
+}
+
+@keyframes cross-before-animate {
+    from {
+        transform: translate(0, 0) rotate(45deg);
+        box-shadow: none;
+    }
 }
 
 
@@ -98,6 +119,21 @@ header {
 .right.turn .circle::before {
     transform: translate(-7px,-7px);
     box-shadow: 7px 7px 9px #555, 7px 7px 9px #555 inset;
+    animation-name: circle-animate;
+    animation-duration: 0.5s;
+    will-change: transform, box-shadow;
+
+}
+
+@keyframes circle-animate {
+    from {
+        transform: translate(0,0);
+        box-shadow: none;
+    }
+    to {
+        transform: translate(-7px,-7px);
+        box-shadow: 7px 7px 9px #555, 7px 7px 9px #555 inset;
+    }
 }
 
 table {
