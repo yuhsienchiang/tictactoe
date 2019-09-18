@@ -201,6 +201,7 @@ td .circle::before {
 a {
     text-decoration: none;
     font-size: 1rem;
+    color: black;
 }
 
 a:visited {
