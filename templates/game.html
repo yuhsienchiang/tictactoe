@@ -1,31 +1,42 @@
 {% extends "layout.html" %}
+{% block cross %}
+    {% if winner == "X" or winner == "Tie" %}
+    <img src="{{ url_for('static', filename='crown.png') }}" class="crown">
+    {% endif %}
+    <div class="left {% if turn == 'X' %} turn {% endif%}">
+        <a href="#" class="cross"></a>
+    </div>
+{% endblock %}
+
 {% block body %}
+    <table>
+        {% for i in range(3) %}
+        <tr>
+            {% for j in range(3) %}
+            <td>
+                {% if game[i][j] %}
+                <a href="#" class="{% if game[i][j] == 'X' %} cross {% else %} circle {% endif %} "></a>
+                {% else %}
+                {% if winner == None %}
+                <a href="{{ url_for('play', row = i, col = j) }}">place here</a>
+                {% endif %}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 
-<table align="center">
-  {% for i in range(3) %}
-  <tr>
-    {% for j in range(3) %}
-    <td>
-      {% if game[i][j] %}
-        {{ game[i][j] }}
-      {% else %}
-        {% if winner == None %}
-          <a href="{{ url_for('play', row = i, col = j) }}">Play {{ turn }} here</a>
-        {% endif %}
-      {% endif %}
-    </td>
-    {% endfor %}
-  </tr>
-  {% endfor %}
-</table>
+{% endblock %}
 
-{% if winner != None %}
-  <h3>Game Over!</h3>
-  {% if winner == "Tie" %}
-    <h3>It's a Tie!</h3>
-  {% else %}
-    <h3>{{ winner }} Win !</h3>
-  {% endif %}
-{% endif %}
+
+{% block circle %}
+    {% if winner == "O" or winner == "Tie" %}
+    <img src="{{ url_for('static', filename='crown.png') }}" class="crown">
+    {% endif %}
+    <div class="right {% if turn == 'O' %} turn {% endif %}">
+        <a href="#" class="circle"></a>
+    </div>
+
 
 {% endblock %}

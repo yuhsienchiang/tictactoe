@@ -1,25 +1,182 @@
-body {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto:100&display=swap');
 
+
+body {
+    font-family: 'Roboto';
+    font-weight: 100;
+    text-align: center;
+    font-size: 16px;
+
+    background-color: #FFFFFB;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: auto;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 70vh;
+}
+
+.item {
+    position: relative;
+    flex-grow: 1;
+    height: auto;
+}
+
+.left, .right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -6.5vw;
+    margin-left: -6.5vw;
+}
+
+.cross {
+    position: relative;
+    display: inline-block;
+    width: 13vw;
+    height: 13vw;
+    opacity: 0.9;
+}
+
+.cross::before, .cross::after {
+    position: absolute;
+    display: block;
+    content: '';
+    left: 6.5vw;
+    height: 13vw;
+    width: 1vw;
+    background-color: #f0754f;
+}
+
+.cross::before {
+    transform: rotate(45deg);
+}
+.cross::after {
+    transform: rotate(-45deg);
+}
+
+.left.turn .cross::before {
+    transform: translate(-7px,-7px) rotate(45deg);;
+    box-shadow: 7px 7px 9px #555;
+}
+
+.left.turn .cross::after {
+    transform: translate(-7px,-7px) rotate(-45deg);;
+    box-shadow: 2px 7px 9px #555;
+}
+
+
+.circle {
+    position: relative;
+    display: inline-block;
+    width: 13vw;
+    height: 13vw;
+    opacity: 0.9;
+}
+
+.circle::before {
+    position: absolute;
+    display: block;
+    content: '';
+    height: 13vw;
+    width: 13vw;
+    border: 1vw solid #6c9460;
+    border-radius: 50%;
+}
+
+
+.right.turn .circle::before {
+    transform: translate(-7px,-7px);
+    box-shadow: 7px 7px 9px #555, 7px 7px 9px #555 inset;
 }
 
 table {
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    border-bottom: 3px solid #FFC758;
+}
+
+tr:last-child {
+    border: 0;
 }
 
 td {
-  border: 3px solid black;
-  width: 150px;
-  height: 150px;
-  font-size: 20px;
+    border-right: 3px solid #FFC758;
+    height: 12vw;
+    width: 12vw;
+}
+
+td:last-child {
+    border: 0;
+}
+
+td .cross, td .circle {
+    height: 9vw;
+    width: 9vw;
+}
+
+
+td  .cross::before, td .cross::after {
+    position: absolute;
+    display: block;
+    content: '';
+    left: 4.5vw;
+    height: 9vw;
+    width: 0.5vw;
+    background-color: #f0754f;
+}
+
+td .circle::before {
+    height: 8vw;
+    width: 8vw;
+    border: 0.5vw solid #6c9460;
+}
+
+.reset-btn {
+    display: block;
+    margin-top: 3.5vh;
+    padding: 1rem;
+    color: #FFF;
+    background-color: #FFC758;
+    opacity: 0.9;
+    transition: all 0.1s linear;
+    will-change: transform, box-shadow;
+}
+
+.reset-btn:hover {
+    transform: translate(5px, 5px);
+    box-shadow: -5px -5px 8px #888;
 }
 
 a {
-  font-size: 12px;
+    text-decoration: none;
+    font-size: 1rem;
 }
 
-td > a {
-  font-size: 10px;
+a:visited {
+    color: black;
+}
+
+.crown {
+    position: absolute;
+    display: block;
+    width: 10vw;
+    height: auto;
+    top: 0;
+    left: 50%;
+    margin-left: -5vw;
 }

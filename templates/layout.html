@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+    <head>
+        <title>Tic Tac Toe</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
 
-<body>
-  <h1>Tic Tac Toe</h1>
-  {% block body %}
-  {% endblock %}
-  <a href="{{ url_for('reset') }}">Reset Game Board</a>
+    <body>
+        <header>
+            <h1>Tic Tac Toe</h1>
+        </header>
+        <main class="container">
+            <section class="item">
+                {% block cross %}
+                {% endblock %}
+            </section>
+            <section class="item board">
+                {% block body %}
+                {% endblock %}
+                <a href="{{ url_for('reset') }}" class="reset-btn">Reset Game Board</a>
+            </section>
+            <seciton class="item">
+                {% block circle %}
+                {% endblock %}
+            </seciton>
 
-</body>
+        </main>
+
+
+    </body>
 </html>

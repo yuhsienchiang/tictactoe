@@ -1,10 +1,11 @@
-#-*- coding:utf-8 -*-
-# AUTHOR:   samchiang
-# FILE:     application.py
-# ROLE:     TODO (some explanation)
-# CREATED:  2019-02-27 11:25:03
-# MODIFIED: 2019-02-27 20:47:11
-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# File              : application.py
+# Author            : Yu Hsien Chiang <samy9ch@gmail.com>
+# Date              : 17.09.19 Tue 15:47:47
+# Last Modified Date: 17.09.19 Tue 15:48:23
+# Last Modified By  : Yu Hsien Chiang <samy9ch@gmail.com>
+#
 from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
@@ -73,7 +74,7 @@ def isOver(board):
     return False
 
 def isTie(board):
-    if (None not in board[0] and None not in board[1] and None not in board[2]):
+    if (None not in board[0] and None not in board[1] and None not in board[2]) and (not isOver(board)):
         return True
     else:
         return False
