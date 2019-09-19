@@ -21,7 +21,7 @@ Session(app)
 @app.route("/")
 def index():
 
-    if "board" not in session:
+    if ("board" not in session or "state" not in session or "winner" not in session):
         session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
         session["state"] = "X"
         session["winner"] = None
@@ -30,16 +30,19 @@ def index():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
-    currentTurn = session["state"]
-    session["board"][row][col] = currentTurn
+    
+    if ("board" not in session or "state" not in session or "winner" not in session):
+        return redirect(url_for("index"))
+    
+    session["board"][row][col] = session["state"]
 
     if (isOver(session["board"]) or isTie(session["board"])):
         if (isTie(session["board"])):
             session["winner"] = "Tie"
         else:
-            session["winner"] = currentTurn
+            session["winner"] = session["state"]
     else:
-        if (currentTurn == "X"):
+        if (session["state"] == "X"):
             session["state"] = "O"
         else:
             session["state"] = "X"
@@ -47,9 +50,7 @@ def play(row, col):
 
 @app.route("/reset")
 def reset():
-    session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-    session["state"] = "X"
-    session["winner"] = None
+    session.pop("board")
     return redirect(url_for("index"))
 
 
