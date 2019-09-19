@@ -21,12 +21,21 @@ Session(app)
 @app.route("/")
 def index():
 
-    if ("board" not in session or "state" not in session or "winner" not in session):
-        session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-        session["state"] = "X"
-        session["winner"] = None
+    return render_template("index.html")
 
+@app.route("/start")
+def start():
+    session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
+    session["state"] = "X"
+    session["winner"] = None
+    
+    return redirect(url_for("game"))
+
+@app.route("/game")
+def game():
     return render_template("game.html", game = session["board"], turn = session["state"], winner=session["winner"])
+
+
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
@@ -46,11 +55,12 @@ def play(row, col):
             session["state"] = "O"
         else:
             session["state"] = "X"
-    return redirect(url_for("index"))
+    return redirect(url_for("game"))
 
 @app.route("/reset")
 def reset():
-    session.pop("board")
+    if ("board" in session):
+        session.pop("board")
     return redirect(url_for("index"))
 
 

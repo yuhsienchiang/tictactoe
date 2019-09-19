@@ -26,7 +26,7 @@
         </tr>
         {% endfor %}
     </table>
-
+    <a href="{{ url_for('reset') }}" class="reset-btn">Reset Game Board</a>
 {% endblock %}
 
 
@@ -37,6 +37,4 @@
     <div class="right {% if turn == 'O' and winner == None %} turn {% endif %}">
         <a href="#" class="circle"></a>
     </div>
-
-
 {% endblock %}

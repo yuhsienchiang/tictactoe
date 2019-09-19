@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block cross %}
+    <div class="left">
+        <a href="#" class="cross"></a>
+    </div>
+{% endblock %}
+
+{% block body %}
+<a href="{{ url_for('start') }}" class="reset-btn">Start Game </a>
+
+{% endblock %}
+
+
+{% block circle %}
+
+    <div class="right">
+        <a href="#" class="circle"></a>
+    </div>
+{% endblock %}
