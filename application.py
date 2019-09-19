@@ -30,19 +30,19 @@ def index():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
-    session["board"][row][col] = session["turn"]
+    currentTurn = session["turn"]
+    session["board"][row][col] = currentTurn
 
     if (isOver(session["board"]) or isTie(session["board"])):
         if (isTie(session["board"])):
             session["winner"] = "Tie"
         else:
-            session["winner"] = session["turn"]
-
-    if (session["turn"] == "X"):
-        session["turn"] = "O"
+            session["winner"] = currentTurn
     else:
-        session["turn"] = "X"
-
+        if (currentTurn == "X"):
+            session["turn"] = "O"
+        else:
+            session["turn"] = "X"
     return redirect(url_for("index"))
 
 @app.route("/reset")
