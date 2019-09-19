@@ -23,14 +23,14 @@ def index():
 
     if "board" not in session:
         session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-        session["turn"] = "X"
+        session["state"] = "X"
         session["winner"] = None
 
-    return render_template("game.html", game = session["board"], turn = session["turn"], winner=session["winner"])
+    return render_template("game.html", game = session["board"], turn = session["state"], winner=session["winner"])
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
-    currentTurn = session["turn"]
+    currentTurn = session["state"]
     session["board"][row][col] = currentTurn
 
     if (isOver(session["board"]) or isTie(session["board"])):
@@ -40,15 +40,15 @@ def play(row, col):
             session["winner"] = currentTurn
     else:
         if (currentTurn == "X"):
-            session["turn"] = "O"
+            session["state"] = "O"
         else:
-            session["turn"] = "X"
+            session["state"] = "X"
     return redirect(url_for("index"))
 
 @app.route("/reset")
 def reset():
     session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-    session["turn"] = "X"
+    session["state"] = "X"
     session["winner"] = None
     return redirect(url_for("index"))
 
