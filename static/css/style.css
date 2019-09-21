@@ -394,7 +394,7 @@ td a:visited {
 }
 
 
-@media screen and (orientation: landscape) {
+@media screen and (max-width: 991px) and (orientation: landscape) {
     header {
         display: none;
     }
