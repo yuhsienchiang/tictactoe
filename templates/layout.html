@@ -3,12 +3,10 @@
     <head>
         <title>Tic Tac Toe</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no viewport-fit=cover">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
-
-
     <body>
         <header>
             <h1>Tic Tac Toe</h1>
@@ -18,19 +16,14 @@
                 {% block cross %}
                 {% endblock %}
             </section>
-            <section class="item board">
+            <section class="item">
                 {% block body %}
-                {% endblock %}
-                
-                
+                {% endblock %}          
             </section>
             <seciton class="item">
                 {% block circle %}
                 {% endblock %}
             </seciton>
-
         </main>
-
-
     </body>
 </html>

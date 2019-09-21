@@ -26,7 +26,10 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="{{ url_for('reset') }}" class="reset-btn">Reset Game Board</a>
+    <a href="{{ url_for('reset') }}" class="reset-btn  {% if winner != None %} end-game {% endif %}">Reset Game Board</a>
+    {% if winner != None %}
+    <div class="shade"></div>
+    {% endif %} 
 {% endblock %}
 
 

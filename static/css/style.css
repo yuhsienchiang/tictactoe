@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100&display=swap');
 
-
 body {
     font-family: 'Roboto';
+    font-size: 16px;
     font-weight: 100;
     text-align: center;
-    font-size: 16px;
-
     background-color: #FFFFFB;
     margin: 0;
     padding: 0;
 }
 
 header {
+    display: block;
     height: auto;
     padding-top: 2.5vh;
     padding-bottom: 2.5vh;
@@ -23,7 +22,8 @@ header {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 70vh;
+    height: auto;
+    min-height: 60vh;
 }
 
 .item {
@@ -151,6 +151,9 @@ tr:last-child {
 }
 
 td {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
     border-right: 3px solid #FFC758;
     height: 12vw;
     width: 12vw;
@@ -182,11 +185,28 @@ td .circle::before {
     border: 0.5vw solid #6c9460;
 }
 
+a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+td a {
+    color: black;
+}
+
+td a:visited {
+    color: black;
+}
+
 .reset-btn {
     display: block;
     margin-top: 3.5vh;
     padding: 1rem;
-    color: #FFF;
     background-color: #FFC758;
     opacity: 0.9;
     transition: all 0.1s linear;
@@ -198,15 +218,42 @@ td .circle::before {
     box-shadow: -5px -5px 8px #888;
 }
 
-a {
-    text-decoration: none;
-    font-size: 1rem;
-    color: black;
+.start-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height:15vw;
+    width: 15vw;
+    margin: -7.5vw 0 0 -7.5vw;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 15vw;
+    background-color: #FFC758;
+    opacity: 0.9;
+    animation: bounce 0.9s ease-in-out infinite;
+    will-change: transform, box-shadow;
 }
 
-a:visited {
-    color: black;
+
+@keyframes bounce {
+    0% {
+        transform: translate(3px, -3px);
+        box-shadow: -3px 3px 7px #555, 1px -1px 7px #555;
+    }
+    46% {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px 9px #555;
+    }
+    54% {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px 9px #555;
+    }
+    100% {
+        transform: translate(3px, -3px);
+        box-shadow: -3px 3px 7px #555, 1px -1px 7px #555;
+    }
 }
+
 
 .crown {
     position: absolute;
@@ -215,5 +262,248 @@ a:visited {
     height: auto;
     top: 0;
     left: 50%;
+    z-index: 5;
     margin-left: -5vw;
+}
+
+.shade {
+    display: none;
+}
+
+@media screen and (orientation: portrait) {
+    header {
+        display: none;
+    }
+
+    .container {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .left, .right {
+        margin-top: -7.5vh;
+        margin-left: -7.5vh;
+    }
+
+    .cross {
+        width: 15vh;
+        height: 15vh;
+    }
+
+    .cross::before, .cross::after {
+        left: 7.5vh;
+        height: 15vh;
+        width: 1vh;
+    }
+
+    .circle {
+        width: 15vh;
+        height: 15vh;
+    }
+
+    .circle::before {
+        height: 13vh;
+        width: 13vh;
+        border: 1vh solid #6c9460;
+    }
+
+    .start-btn {
+        height:18vh;
+        width: 18vh;
+        margin: -9vh 0 0 -9vh;
+        font-size: 2rem;
+        line-height: 18vh;
+    }
+
+    table {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -21vh;
+        margin-left: -19vh;
+    }
+
+    td {
+        height: 13vh;
+        width: 13vh;
+    } 
+
+    td .cross, td .circle {
+        height: 10vh;
+        width: 10vh;
+    }
+
+    td  .cross::before, td .cross::after {
+        left: 5vh;
+        height: 10vh;
+        width: 0.5vh;
+    }
+
+    td .circle::before {
+        height: 9vh;
+        width: 9vh;
+        border: 0.5vh solid #6c9460;
+    }
+
+    .reset-btn {
+        display: none;
+        position: absolute;
+        width: 45vw;
+        left: 50%;
+        margin-left: -22.5vw;
+        padding: 1rem;
+    }
+
+    .reset-btn:hover {
+        transform: none;
+    }
+
+    .end-game {
+        display: block;
+        z-index: 15;
+        animation: bounce 0.9s ease-in-out infinite;
+    }
+
+    .shade {
+        display: block;
+        position: absolute;
+        height: auto;
+        width: auto;
+    }
+
+    .shade::after {
+        display: block;
+        position: absolute;
+        content: '';
+        top: -50vh;
+        left: 0;
+        z-index: 10;
+        width: 120vw;
+        height: 130vh;
+        background-color: #888;
+        opacity: 0.7;
+    }
+
+    .crown {
+        width: 15vw;
+        top: 2vh;
+        margin-left: -7.5vw;
+    }
+
+}
+
+
+@media screen and (orientation: landscape) {
+    header {
+        display: none;
+    }
+
+    .container {
+        height: 100vh;
+    }
+
+    .left, .right {
+        margin-top: -7.5vw;
+        margin-left: -7.5vw;
+    }
+
+    .cross {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .cross::before, .cross::after {
+        left: 7.5vw;
+        height: 15vw;
+        width: 1vw;
+    }
+
+    .circle {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .circle::before {
+        height: 13vw;
+        width: 13vw;
+        border: 1vw solid #6c9460;
+    }
+
+    table {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -19.5vw;
+        margin-left: -16.5vw;
+    }
+
+    td {
+        height: 13vw;
+        width: 13vw;
+    } 
+
+    td .cross, td .circle {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    td  .cross::before, td .cross::after {
+        left: 5vw;
+        height: 10vw;
+        width: 0.5vw;
+    }
+
+    td .circle::before {
+        height: 9vw;
+        width: 9vw;
+        border: 0.5vw solid #6c9460;
+    }
+
+    .reset-btn {
+        display: none;
+        position: absolute;
+        width: 38vw;
+        left: 50%;
+        top: 20vh;
+        margin-left: -19vw;
+        padding: 1rem;
+    }
+
+    .reset-btn:hover {
+        transform: none;
+    }
+
+    .end-game {
+        display: block;
+        z-index: 15;
+        animation: bounce 0.9s ease-in-out infinite;
+    }
+
+    .shade {
+        display: block;
+        position: absolute;
+        height: auto;
+        width: auto;
+    }
+
+    .shade::after {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 0;
+        left: -40vw;
+        z-index: 10;
+        width: 140vw;
+        height: 130vh;
+        background-color: #888;
+        opacity: 0.7;
+    }
+
+    .crown {
+        width: 15vw;
+        top: 3vh;
+        margin-left: -7.5vw;
+    }
 }
